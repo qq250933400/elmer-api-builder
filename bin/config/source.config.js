@@ -11,6 +11,12 @@ module.exports.ApiProject = {
         './.istanbul.yml'
     ],
     packageConfig: {
+        "scripts": {
+            "test": "eslint test && mocha --compilers js:babel-core/register",
+            "lint": "eslint bin",
+            "lib": "babel src/ --out-dir lib/",
+            "dev": "eslint src && babel-node src/index.js",
+        },
         "dependencies": {
             "babel-cli": "^6.26.0",
             "babel-core": "^6.25.0",
