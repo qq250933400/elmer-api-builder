@@ -29,6 +29,7 @@ module.exports.ApiProject = {
             "babel-preset-stage-0": "^6.24.1",
             "chai": "^4.1.1",
             "colors": "^1.1.2",
+            "enzyme": "^2.9.1",
             "eslint": "^4.5.0",
             "eslint-plugin-react": "^7.3.0",
             "istanbul": "^0.4.5",
