@@ -14,6 +14,9 @@ var copyObject = function(des, src) {
         for (var key in src) {
             const curValue = src[key];
             const typeStr = Object.prototype.toString.call(curValue);
+            if (des[key] === undefined) {
+                des[key] = typeStr === '[object Object]' ? {} : '';
+            }
             if (typeStr === '[object String]' || typeStr === '[object Number]') {
                 des[key] = curValue;
             } else {
