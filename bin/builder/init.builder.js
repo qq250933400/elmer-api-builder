@@ -1,7 +1,9 @@
-var config = require('../config/source.config');
-var path = require('path');
-var fs = require('fs');
-var packageJson = require('../../../../package.json');
+require('colors');
+var config = require('../config/source.config'),
+    path = require('path'),
+    fs = require('fs'),
+    packageJson = require('../../../../package.json'),
+    common = require('./common');
 
 var isRelaseMode = function() {
     return /node_modules/.test(__dirname);
@@ -19,6 +21,12 @@ var initBuilder = function () {
                     packageJson[key] = packageConfig[key];
                 }
                 fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 4));
+                console.log('[0]    save configrature to package.json'.green);
+                const paths = config.ApiProject.path || [];
+                for (var key in paths) {
+                    common.checkDir(paths[key]);
+                }
+                console.log('[0]    Check the project structure and create the corresponding directory.'.green)
             }
         } else {
             throw new Error('Unable to get the allocation of resources the file content!');
