@@ -9,6 +9,22 @@ var isRelaseMode = function() {
     return /node_modules/.test(__dirname);
 };
 
+var copyObject = function(des, src) {
+    if (src) {
+        for (var key in src) {
+            const curValue = src[key];
+            const typeStr = Object.prototype.toString.call(curValue);
+            if (typeStr === '[object String]' || typeStr === '[object Number]') {
+                des[key] = curValue;
+            } else {
+                const newNode = copyObject(des[key], curValue);
+                des[key] = newNode;
+            }
+        }
+    }
+    return des;
+};
+
 var initApply = function (app) {
     if (config) {
         const packageConfig = app.packageConfig;
@@ -16,9 +32,7 @@ var initApply = function (app) {
             throw new Error('Please run this command in a production environment!');
         } else {
             const packageJsonFile = path.resolve(__dirname, '../../../../package.json');
-            for (const key in packageConfig) {
-                packageJson[key] = packageConfig[key];
-            }
+            packageJson = copyObject (packageJson, packageConfig);
             fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 4));
             console.log('[0]    save configrature to package.json'.green);
             const paths = app.path || [];

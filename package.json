@@ -1,6 +1,6 @@
 {
   "name": "elmer-api-builder",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "For create an empty api project",
   "main": "index.js",
   "bin": {

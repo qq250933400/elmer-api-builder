@@ -2,6 +2,6 @@ node_modules
 mochawesome-report
 coverage
 src
-test
+test/common
 yarn.lock
 package-lock.json
