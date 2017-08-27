@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "eslint test && mocha --compilers js:babel-core/register",
-    "lint": "eslint src",
+    "lint": "eslint bin",
     "lib": "babel src/ --out-dir lib/",
     "dev": "eslint src && babel-node src/index.js",
     "binDev": "eslint bin && node bin/index.js",

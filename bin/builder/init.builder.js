@@ -9,28 +9,43 @@ var isRelaseMode = function() {
     return /node_modules/.test(__dirname);
 };
 
+var initApply = function (app) {
+    if (config) {
+        const packageConfig = app.packageConfig;
+        if (!isRelaseMode()) {
+            throw new Error('Please run this command in a production environment!');
+        } else {
+            const packageJsonFile = path.resolve(__dirname, '../../../../package.json');
+            for (const key in packageConfig) {
+                packageJson[key] = packageConfig[key];
+            }
+            fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 4));
+            console.log('[0]    save configrature to package.json'.green);
+            const paths = app.path || [];
+            for (const subkey in paths) {
+                common.checkDir(paths[subkey]);
+            }
+            console.log('[0]    Check the project structure and create the corresponding directory.'.green);
+            const files = app.files || [];
+            const sourcePath = path.resolve(__dirname, '../../');
+            const projectPath = path.resolve(__dirname, '../../../../');
+            for (const fKey in files) {
+                const fileName = files[fKey];
+                const sFileName = path.resolve(sourcePath, fileName);
+                const pFileName = path.resolve(projectPath, fileName);
+                console.log(sFileName.blue);
+                console.log(pFileName.red);
+            }
+        }
+    } else {
+        throw new Error('Unable to get the allocation of resources the file content!');
+    }
+};
+
 var initBuilder = function () {
     this.run = function() {
-        if (config) {
-            var packageConfig = config.ApiProject.packageConfig;
-            if (!isRelaseMode()) {
-                throw new Error('Please run this command in a production environment!');
-            } else {
-                var packageJsonFile = path.resolve(__dirname, '../../../../package.json');
-                for (var key in packageConfig) {
-                    packageJson[key] = packageConfig[key];
-                }
-                fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 4));
-                console.log('[0]    save configrature to package.json'.green);
-                const paths = config.ApiProject.path || [];
-                for (var key in paths) {
-                    common.checkDir(paths[key]);
-                }
-                console.log('[0]    Check the project structure and create the corresponding directory.'.green)
-            }
-        } else {
-            throw new Error('Unable to get the allocation of resources the file content!');
-        }
+        var app = config.ApiProject;
+        initApply(app);
     };
 
 };
