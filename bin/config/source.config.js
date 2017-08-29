@@ -33,6 +33,7 @@ module.exports.ApiProject = {
             "eslint": "^4.5.0",
             "eslint-plugin-react": "^7.3.0",
             "istanbul": "^0.4.5",
+            "jsdom": "^11.2.0",
             "mocha": "^3.5.0",
             "mochawesome": "^2.3.0",
             "react": "^15.6.1",
