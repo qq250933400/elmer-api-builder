@@ -6,6 +6,7 @@ module.exports.ApiProject = {
     ],
     files: [
         './test/mocha.opts',
+        './test/mocha.jsdom.js',
         './.babelrc',
         './.eslintrc.json',
         './.istanbul.yml'
