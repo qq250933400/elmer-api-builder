@@ -63,7 +63,12 @@
         "react/require-render-return": 2,
         "react/jsx-tag-spacing": 2,
         "react/jsx-indent": [2, 4],
-        "react/sort-prop-types": 2,
+        "react/sort-prop-types": [2, {
+                "callbacksLast": true,
+                "ignoreCase": true,
+                "requiredFirst": true
+            }
+        ],
         "react/no-will-update-set-state": 2,
         "react/self-closing-comp": 2,
         ////////////////

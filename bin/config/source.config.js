@@ -42,6 +42,7 @@ module.exports.ApiProject = {
             "react-hot-loader": "^1.3.1",
             "react-redux": "^5.0.5",
             "react-router": "^4.1.2",
+            "react-test-renderer": "^15.6.1",
             "redux": "^3.7.2",
             "redux-saga": "^0.15.6",
             "should": "^11.2.1"
